@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sarkari Saathi</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Login Modal -->
+  <div id="login-modal" class="login-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="login-modal-window" role="document" aria-labelledby="login-title">
+      <button id="login-close" class="login-close-btn" aria-label="Close login window">&times;</button>
+
+      <div class="auth-wrap">
+        <!-- Left: info / brand -->
+        <div class="auth-side auth-info">
+          <h2 id="login-title">Welcome to Sarkari Saathi</h2>
+          <p>Sign in to access your profile, saved jobs and personalized features.</p>
+          <div class="auth-switch" role="tablist" aria-label="Auth switch">
+            <button id="show-login" class="auth-switch-btn active" role="tab" aria-selected="true">Sign In</button>
+            <button id="show-signup" class="auth-switch-btn" role="tab" aria-selected="false">Sign Up</button>
+          </div>
+        </div>
+
+        <!-- Right: forms -->
+        <div class="auth-side auth-forms">
+          <!-- LOGIN FORM -->
+          <form id="login-form" class="auth-form" novalidate>
+            <label for="login-username">Username or Email</label>
+            <input id="login-username" name="username" type="text" placeholder="username or email" required>
+
+            <label for="login-password">Password</label>
+            <input id="login-password" name="password" type="password" placeholder="password" required>
+
+            <div class="auth-actions">
+              <button type="submit" class="auth-primary">Sign In</button>
+              <button type="button" id="login-cancel" class="auth-secondary">Cancel</button>
+            </div>
+
+            <div class="auth-aux">
+              <label class="auth-remember">
+                <input type="checkbox" id="remember-me"> Remember me
+              </label>
+              <a href="#" id="forgot-password">Forgot password?</a>
+            </div>
+          </form>
+
+          <!-- SIGNUP FORM -->
+          <form id="signup-form" class="auth-form hidden" novalidate>
+            <label for="signup-username">Username</label>
+            <input id="signup-username" name="s-username" type="text" placeholder="choose a username" required>
+
+            <label for="signup-email">Email</label>
+            <input id="signup-email" name="s-email" type="email" placeholder="you@example.com" required>
+
+            <label for="signup-password">Password</label>
+            <input id="signup-password" name="s-password" type="password" placeholder="min 6 characters" required>
+
+            <label for="signup-password-confirm">Confirm Password</label>
+            <input id="signup-password-confirm" name="s-password-confirm" type="password" placeholder="confirm password" required>
+
+            <div class="auth-actions">
+              <button type="submit" class="auth-primary">Create Account</button>
+              <button type="button" id="signup-cancel" class="auth-secondary">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<!-- Side Menu -->
+<div id="side-menu" class="side-menu">
+  <div class="close-btn-wrapper">
+    <button id="close-side-menu" class="close-side-menu">×</button>
+  </div>
+
+  <div class="menu-section user-login-section">
+    <div class="login-container centered-login">
+      <!-- Profile image (default placeholder) -->
+      <div class="profile-pic large-center" title="User profile">
+        <img src="https://via.placeholder.com/100" alt="User Avatar" id="user-avatar" tabindex="0" aria-haspopup="true" aria-expanded="false">
+      </div>
+
+      <!-- Login button -->
+      <button id="login-btn" class="login-btn center-btn">Login</button>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Hamburger trigger button -->
+  <button id="side-menu-toggle" class="side-menu-toggle" aria-controls="side-menu" aria-expanded="false">☰</button>
+
+  <header>
+    <div class="site-title">
+      <h1>Sarkari <span>Saathi</span></h1>
+      <p>Your trusted companion for all Government Updates</p>
+    </div>
+
+     <!-- right side menu -->
+
+    <nav class="navbar" aria-label="Main navigation">
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-links">☰</button>
+      <ul id="nav-links" role="menubar">
+        <li role="none"><a role="menuitem" href="#home" class="active">Home</a></li>
+        <li role="none"><a role="menuitem" href="#jobs">Jobs</a></li>
+        <li role="none"><a role="menuitem" href="#form-assistant">Form Assistant</a></li>
+        <li role="none"><a role="menuitem" href="#documents">My Documents</a></li>
+        <li role="none"><a role="menuitem" href="#syllabus">Syllabus</a></li>
+        <li role="none"><a role="menuitem" href="#payscale">Pay Scale</a></li>
+        <li role="none"><a role="menuitem" href="#about">About Us</a></li>
+        <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
+        <li role="none"><a role="menuitem" href="#login">Login</a></li>
+        <li role="none"><a role="menuitem" href="#contribute">Contribute</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<script src="script.js"></script>
+</body>
+</html>
