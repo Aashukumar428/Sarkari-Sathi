@@ -1,0 +1,407 @@
+/* =========================================================
+   🌐 GLOBAL RESET & BASE STYLES
+   ========================================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height: 100%; width: 100%; }
+
+body {
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: #f7f9fc;
+  color: #122;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   🏷️ SITE TITLE SECTION
+   ========================================================= */
+.site-title {
+  text-align: center;
+  padding: clamp(32px, 6vw, 48px) 16px clamp(24px, 5vw, 36px);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #004aad 0%, #0077ff 100%);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+}
+
+.site-title h1 {
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.site-title h1 span {
+  color: #ffdf59;
+  text-shadow: 0 0 8px rgba(255,255,255,0.45);
+}
+
+.site-title p {
+  font-size: clamp(0.9rem, 2vw, 1.15rem);
+  color: rgba(255,255,255,0.92);
+  margin-top: 6px;
+  opacity: 0.95;
+}
+
+.site-title::after {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: -60%;
+  width: 220%;
+  height: 160%;
+  background: linear-gradient(
+    115deg,
+    rgba(0,0,0,0.06) 0%,
+    rgba(3,27,72,0.25) 40%,
+    rgba(3,27,72,0.35) 50%,
+    rgba(3,27,72,0.25) 60%,
+    rgba(255,255,255,0.02) 100%
+  );
+  transform: rotate(10deg);
+  animation: sweep 7s linear infinite;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+@keyframes sweep {
+  0%   { transform: translateX(-120%) rotate(10deg); }
+  50%  { transform: translateX(0%) rotate(10deg); }
+  100% { transform: translateX(120%) rotate(10deg); }
+}
+
+
+/* =========================================================
+   🧭 NAVBAR STYLES
+   ========================================================= */
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid rgba(6,21,41,0.04);
+  position: sticky;
+  top: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(6px, 1.2vw, 12px);
+  box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  flex-wrap: wrap;
+}
+
+/* Hamburger toggle for navbar (top) */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #004aad;
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+/* Navbar links */
+#nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  margin: 0;
+}
+
+#nav-links a {
+  display: inline-block;
+  padding: clamp(6px, 1.2vw, 10px) clamp(10px, 2vw, 14px);
+  color: #0e1b2b;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+  border-radius: 8px;
+  position: relative;
+  transition: transform 150ms ease, background-color 160ms ease, color 160ms ease;
+  outline: none;
+}
+
+#nav-links a:hover,
+#nav-links a:focus {
+  transform: translateY(-3px);
+  background: rgba(0,119,255,0.08);
+  color: #003a8c;
+  box-shadow: 0 6px 18px rgba(0,119,255,0.06);
+}
+
+#nav-links a.active {
+  background: linear-gradient(90deg,#004aad,#0066d1);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(0,85,170,0.16);
+}
+
+#nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 14%;
+  bottom: 6px;
+  width: 72%;
+  height: 3px;
+  background: linear-gradient(90deg,#ffdf59,#ffa751);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 250ms cubic-bezier(.2,.9,.3,1);
+  border-radius: 2px;
+  opacity: 0.95;
+}
+
+#nav-links a:hover::after,
+#nav-links a:focus::after,
+#nav-links a.active::after {
+  transform: scaleX(1);
+}
+
+
+/* =========================================================
+   📱 RESPONSIVE NAVBAR
+   ========================================================= */
+@media (max-width: 768px) {
+  .menu-toggle { display: block; position: absolute; right: 14px; top: 12px; }
+  .navbar { justify-content: flex-start; padding-left: 16px; }
+
+  #nav-links {
+    display: none;
+    position: absolute;
+    top: 54px;
+    right: 12px;
+    background: #fff;
+    flex-direction: column;
+    width: calc(100% - 28px);
+    max-width: 420px;
+    border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(12,30,60,0.12);
+    padding: 10px;
+    gap: 6px;
+  }
+
+  #nav-links.open { display: flex; }
+  #nav-links a { width: 100%; padding: 12px 14px; }
+}
+
+
+/* =========================================================
+   🍔 SIDE MENU (HAMBURGER PANEL)
+   ========================================================= */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  width: clamp(240px, 60vw, 300px);
+  height: 100%;
+  background: #fff;
+  box-shadow: 4px 0 18px rgba(0,0,0,0.12);
+  z-index: 1500;
+  padding: clamp(16px, 3vw, 20px);
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  border-top-right-radius: 18px;
+  border-bottom-right-radius: 18px;
+}
+
+.side-menu.open {
+  transform: translateX(0);
+}
+
+/* === Close Button (Glowing Square) === */
+.close-side-menu {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  background: #fff;
+  border: 2px solid rgba(0,74,173,0.2);
+  border-radius: 10px;
+  color: #004aad;
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: all 0.25s ease;
+}
+
+.close-side-menu:hover {
+  border-color: #004aad;
+  box-shadow: 0 0 12px rgba(0,119,255,0.5);
+  transform: scale(1.05);
+}
+
+/* === Side Menu Section Headings === */
+.side-menu .menu-section {
+  margin-bottom: 24px;
+}
+
+.side-menu .menu-section h3 {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-weight: 600;
+  color: #004aad;
+  margin-bottom: 8px;
+}
+
+.side-menu .menu-section ul { list-style: none; padding: 0; }
+.side-menu .menu-section ul li { margin-bottom: 10px; }
+
+.side-menu .menu-section ul li a {
+  display: block;
+  padding: 6px 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #122;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.side-menu .menu-section ul li a:hover {
+  background: rgba(0,119,255,0.08);
+  color: #003a8c;
+}
+
+
+/* =========================================================
+   👤 USER LOGIN SECTION (Inside Hamburger Menu)
+   ========================================================= */
+.user-login-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 70px;
+}
+
+.user-login-section h3 {
+  color: #004aad;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 16px;
+}
+
+/* Profile image centered & styled */
+.user-login-section .profile-pic {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(0,74,173,0.2);
+  box-shadow: 0 6px 20px rgba(0,64,140,0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  margin-bottom: 18px;
+}
+
+.user-login-section .profile-pic:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0,74,173,0.2);
+}
+
+.user-login-section .profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Login button under profile */
+.login-btn {
+  padding: 10px 16px;
+  width: 80%;
+  background: linear-gradient(90deg, #004aad, #0066d1);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 14px rgba(0,74,173,0.12);
+  transition: all 0.25s ease;
+}
+
+.login-btn:hover {
+  background: linear-gradient(90deg, #005de0, #007aff);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0,74,173,0.22);
+}
+
+
+/* =========================================================
+   🎛️ HAMBURGER BUTTON (Toggle Icon on Page)
+   ========================================================= */
+.side-menu-toggle {
+  position: fixed;
+  left: clamp(8px, 2vw, 16px);
+  top: clamp(195px, 20vh, 190px);
+  z-index: 1600;
+  background: #004aad;
+  color: #fff;
+  border: none;
+  padding: clamp(8px, 1.5vw, 10px) clamp(10px, 2vw, 14px);
+  border-radius: 6px;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.side-menu-toggle:hover { transform: translateX(2px); }
+.side-menu.open ~ .side-menu-toggle { opacity: 0; pointer-events: none; }
+
+
+/* =========================================================
+   🧾 SCROLLBAR STYLE
+   ========================================================= */
+.side-menu::-webkit-scrollbar { width: 6px; }
+.side-menu::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.15);
+  border-radius: 3px;
+}
+
+
+/* =========================================================
+   🪟 LOGIN MODAL WINDOW
+   ========================================================= */
+/* (Unchanged for now — kept for completeness) */
+.login-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2200;
+}
+.login-modal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 12, 30, 0.5);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* etc... (rest of your modal code unchanged) */
+
+
+/* =========================================================
+   📱 RESPONSIVE TWEAKS
+   ========================================================= */
+@media (max-width: 400px) {
+  .site-title h1 { font-size: 1.6rem; }
+  .site-title p { font-size: 0.9rem; }
+  .side-menu-toggle { top: 120px; padding: 8px 12px; }
+  .user-login-section .profile-pic { width: 72px; height: 72px; }
+  .login-btn { width: 90%; font-size: 0.9rem; }
+  .close-side-menu { width: 34px; height: 34px; }
+}
