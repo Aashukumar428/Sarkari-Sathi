@@ -3,7 +3,6 @@
    ========================================================= */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html,body { height: 100%; width: 100%; }
-
 body {
   font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   background: #f7f9fc;
@@ -13,7 +12,6 @@ body {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
-
 
 /* =========================================================
    🏷️ SITE TITLE SECTION
@@ -74,7 +72,6 @@ body {
   100% { transform: translateX(120%) rotate(10deg); }
 }
 
-
 /* =========================================================
    🧭 NAVBAR STYLES
    ========================================================= */
@@ -92,7 +89,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* Hamburger toggle for navbar (top) */
 .menu-toggle {
   display: none;
   background: transparent;
@@ -103,7 +99,6 @@ body {
   cursor: pointer;
 }
 
-/* Navbar links */
 #nav-links {
   display: flex;
   flex-wrap: wrap;
@@ -163,7 +158,6 @@ body {
   transform: scaleX(1);
 }
 
-
 /* =========================================================
    📱 RESPONSIVE NAVBAR
    ========================================================= */
@@ -190,9 +184,12 @@ body {
   #nav-links a { width: 100%; padding: 12px 14px; }
 }
 
-
 /* =========================================================
    🍔 SIDE MENU (HAMBURGER PANEL)
+   =========================================================
+   Only this section was visually updated per your request.
+   It has rounded corners, centered profile & button,
+   and the close button inside a glowing square.
    ========================================================= */
 .side-menu {
   position: fixed;
@@ -211,11 +208,10 @@ body {
   border-bottom-right-radius: 18px;
 }
 
-.side-menu.open {
-  transform: translateX(0);
-}
+/* When menu open */
+.side-menu.open { transform: translateX(0); }
 
-/* === Close Button (Glowing Square) === */
+/* Close button: glowing square */
 .close-side-menu {
   position: absolute;
   top: 14px;
@@ -242,11 +238,8 @@ body {
   transform: scale(1.05);
 }
 
-/* === Side Menu Section Headings === */
-.side-menu .menu-section {
-  margin-bottom: 24px;
-}
-
+/* Section headings inside side menu */
+.side-menu .menu-section { margin-bottom: 24px; }
 .side-menu .menu-section h3 {
   font-size: clamp(0.9rem, 2vw, 1rem);
   font-weight: 600;
@@ -254,9 +247,9 @@ body {
   margin-bottom: 8px;
 }
 
+/* Links */
 .side-menu .menu-section ul { list-style: none; padding: 0; }
 .side-menu .menu-section ul li { margin-bottom: 10px; }
-
 .side-menu .menu-section ul li a {
   display: block;
   padding: 6px 8px;
@@ -266,12 +259,10 @@ body {
   font-weight: 500;
   transition: background 0.2s ease, color 0.2s ease;
 }
-
 .side-menu .menu-section ul li a:hover {
   background: rgba(0,119,255,0.08);
   color: #003a8c;
 }
-
 
 /* =========================================================
    👤 USER LOGIN SECTION (Inside Hamburger Menu)
@@ -291,7 +282,7 @@ body {
   margin-bottom: 16px;
 }
 
-/* Profile image centered & styled */
+/* large centered profile */
 .user-login-section .profile-pic {
   width: 90px;
   height: 90px;
@@ -303,19 +294,15 @@ body {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   margin-bottom: 18px;
 }
-
 .user-login-section .profile-pic:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 28px rgba(0,74,173,0.2);
 }
-
 .user-login-section .profile-pic img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100%; height: 100%; object-fit: cover;
 }
 
-/* Login button under profile */
+/* centered login button */
 .login-btn {
   padding: 10px 16px;
   width: 80%;
@@ -329,16 +316,14 @@ body {
   box-shadow: 0 4px 14px rgba(0,74,173,0.12);
   transition: all 0.25s ease;
 }
-
 .login-btn:hover {
   background: linear-gradient(90deg, #005de0, #007aff);
   transform: translateY(-2px);
   box-shadow: 0 8px 22px rgba(0,74,173,0.22);
 }
 
-
 /* =========================================================
-   🎛️ HAMBURGER BUTTON (Toggle Icon on Page)
+   🎛️ HAMBURGER BUTTON (Page toggle)
    ========================================================= */
 .side-menu-toggle {
   position: fixed;
@@ -355,10 +340,8 @@ body {
   box-shadow: 0 4px 14px rgba(0,0,0,0.12);
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
-
 .side-menu-toggle:hover { transform: translateX(2px); }
 .side-menu.open ~ .side-menu-toggle { opacity: 0; pointer-events: none; }
-
 
 /* =========================================================
    🧾 SCROLLBAR STYLE
@@ -369,39 +352,209 @@ body {
   border-radius: 3px;
 }
 
-
 /* =========================================================
-   🪟 LOGIN MODAL WINDOW
+   🪟 LOGIN POPUP (POLISHED & FIXED)
    ========================================================= */
-/* (Unchanged for now — kept for completeness) */
+
 .login-modal {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: none;
-  align-items: center;
   justify-content: center;
-  z-index: 2200;
+  align-items: center;
+  backdrop-filter: blur(8px) brightness(0.9);
+  background-color: rgba(0, 0, 0, 0.55);
+  z-index: 9999; /* 🔺 ensures popup stays above everything */
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
-.login-modal::before {
-  content: "";
+
+.login-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* Glassy popup window */
+.login-modal-window {
+  position: relative;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  overflow: hidden;
+  max-width: 800px;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  animation: fadeInUp 0.4s ease forwards;
+  transform: translateY(40px);
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Close button */
+.login-close-btn {
   position: absolute;
-  inset: 0;
-  background: rgba(6, 12, 30, 0.5);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  top: 15px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+  padding: 4px 10px;
+  transition: all 0.3s ease;
+}
+.login-close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
 }
 
-/* etc... (rest of your modal code unchanged) */
+/* Left side branding */
+.auth-info {
+  flex: 1;
+  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+  color: #fff;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.auth-info h2 {
+  margin-bottom: 8px;
+  font-size: 28px;
+  font-weight: 700;
+}
+.auth-info p {
+  margin-bottom: 25px;
+  opacity: 0.9;
+}
 
+/* Switch buttons (Sign In / Sign Up) */
+.auth-switch {
+  display: flex;
+  gap: 10px;
+}
+.auth-switch-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: 8px 18px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.auth-switch-btn:hover,
+.auth-switch-btn.active {
+  background: #fff;
+  color: #1e3a8a;
+}
 
-/* =========================================================
-   📱 RESPONSIVE TWEAKS
-   ========================================================= */
-@media (max-width: 400px) {
-  .site-title h1 { font-size: 1.6rem; }
-  .site-title p { font-size: 0.9rem; }
-  .side-menu-toggle { top: 120px; padding: 8px 12px; }
-  .user-login-section .profile-pic { width: 72px; height: 72px; }
-  .login-btn { width: 90%; font-size: 0.9rem; }
-  .close-side-menu { width: 34px; height: 34px; }
+/* Right side forms */
+.auth-forms {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(15px);
+  padding: 40px 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.auth-form.hidden {
+  display: none;
+}
+
+/* Input fields */
+.auth-form input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.8);
+  outline: none;
+  font-size: 15px;
+  transition: border 0.3s, background 0.3s;
+}
+.auth-form input:focus {
+  border-color: #2563eb;
+  background: #fff;
+}
+
+/* Buttons */
+.auth-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+.auth-primary {
+  background-color: #2563eb;
+  color: #fff;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.auth-primary:hover {
+  background-color: #1e40af;
+}
+.auth-secondary {
+  background-color: #e5e7eb;
+  color: #111;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.auth-secondary:hover {
+  background-color: #d1d5db;
+}
+
+/* Aux text below buttons */
+.auth-aux {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.auth-aux a {
+  color: #2563eb;
+  text-decoration: none;
+}
+.auth-aux a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive layout */
+@media (max-width: 700px) {
+  .login-modal-window {
+    flex-direction: column;
+    max-width: 90%;
+  }
+  .auth-info {
+    align-items: center;
+    text-align: center;
+  }
 }
